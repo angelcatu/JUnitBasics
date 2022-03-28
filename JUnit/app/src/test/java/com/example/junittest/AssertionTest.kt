@@ -43,13 +43,6 @@ class AssertionTest{
     }
 
     @Test
-    fun checkNotNullUserTest(){
-        val assertion = Assertion()
-        val user = User("Angel", 28)
-        assertNotNull(assertion.checkHuman(user))
-    }
-
-    @Test
     fun checkNotSameUserTest(){
         val bot = User("bot", 1, false)
         val human = User("Jimena", 25, true)
