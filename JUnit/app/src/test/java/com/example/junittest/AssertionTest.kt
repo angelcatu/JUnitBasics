@@ -31,4 +31,20 @@ class AssertionTest{
 
         assertion.checkHuman(human1)?.let { assertTrue(it) }
     }
+
+    @Test
+    fun checkNullUserTest(){
+        val user = null
+        assertNull(user)
+
+        val assertion = Assertion()
+        assertNull(assertion.checkHuman(user))
+    }
+
+    @Test
+    fun checkNotNullUserTest(){
+        val assertion = Assertion()
+        val user = User("Angel", 28)
+        assertNotNull(assertion.checkHuman(user))
+    }
 }
