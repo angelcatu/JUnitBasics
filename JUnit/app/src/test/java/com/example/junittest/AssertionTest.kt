@@ -42,22 +42,6 @@ class AssertionTest{
         assertNull(assertion.checkHuman(user))
     }
 
-    @Test
-    fun checkNotSameUserTest(){
-        val bot = User("bot", 1, false)
-        val human = User("Jimena", 25, true)
-
-        assertNotSame(bot, human)
-    }
-
-    @Test
-    fun checkSameUserTest(){
-        val bot = User("Jimena", 25, true)
-        val human = User("Jimena", 25, true)
-        val humanCopy = human
-        assertSame(humanCopy, human)
-    }
-
     @Test(timeout = 1000)
     fun getCitiesTest(){
         var cities = arrayOf("México", "Letonia", "Colombia")

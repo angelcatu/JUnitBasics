@@ -1,27 +1,37 @@
 package com.example.junittest
 
-import org.junit.After
+import org.junit.*
 import org.junit.Assert.*
-import org.junit.Before
-
-import org.junit.Test
 
 class AssertionUserTest {
 
     private lateinit var bot: User
-    private lateinit var human1: User
+
+    companion object{
+        private lateinit var user: User
+
+        @BeforeClass @JvmStatic
+        fun setupCommon(){
+            user = User("Marielos", 18)
+            println("BeforeClass")
+        }
+
+        @AfterClass @JvmStatic
+        fun tearDownCommon(){
+            user = User()
+            println("AfterClass")
+        }
+    }
 
     @Before
     fun setup(){
         bot = User("8bit", 1, false)
-        human1 = User("Marielos", 18)
         println("Before")
     }
 
     @After
     fun tearDown(){
         bot = User()
-        human1 = User()
         println("After")
     }
 
@@ -29,15 +39,28 @@ class AssertionUserTest {
     fun checkHuman() {
         val assertion = Assertion();
         //assertion.checkHuman(human1)?.let { assertFalse(it) }
-        assertion.checkHuman(human1)?.let { assertTrue(it) }
+        assertion.checkHuman(user)?.let { assertTrue(it) }
 
         println("CheckHuman")
     }
 
     @Test
     fun checkNotNullUserTest(){
-        assertNotNull(human1)
+        assertNotNull(user)
 
         println("CheckNotNullUser")
+    }
+
+
+    @Test
+    fun checkNotSameUserTest(){
+        assertNotSame(bot, user)
+    }
+
+
+    @Test
+    fun checkSameUserTest(){
+        val humanCopy = user
+        assertSame(humanCopy, user)
     }
 }
